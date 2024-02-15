@@ -69,12 +69,12 @@ class _MyHomePageState extends State<MyHomePage> {
             selectedIndex = index;
           });
         },
-        items: [
-          const BottomNavigationBarItem(
+        items: const[
+          BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'ホーム',
           ),
-          const BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon: Icon(Icons.add),
             label: '投稿',
             backgroundColor: Color.fromARGB(255, 0, 140, 255),
