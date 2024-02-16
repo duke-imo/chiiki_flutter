@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chiiki/post.dart';
+import 'database.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,10 +37,22 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int selectedIndex = 0;
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const Text("ここに投稿を表示"),
+      body: ListView.builder(
+        itemCount: datalist.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Card(
+            child: ListTile(
+              title: Text(datalist[index].text),
+              subtitle: Text(datalist[index].date.toString()),
+              trailing: Text(datalist[index].username),
+            ),
+          );
+        },
+      ),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
