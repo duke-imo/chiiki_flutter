@@ -41,7 +41,7 @@ class _PostPagePageState extends State<PostPage> {
 
           String savedText = prefs.getString('saved_text') ?? "No Data";
 
-          post(text: savedText, date: DateTime.now().toString(), username: "kato");
+          post(savedText, DateTime.now().toString(), "kato");
 
           Navigator.push(
             context,
