@@ -1,10 +1,10 @@
-class Data {
+class Post {
   final String text;
   //final List<int> imageBytes;
   final DateTime date;
   final String username;
 
-  Data({
+  Post({
     required this.text, 
     //required this.imageBytes,
     required this.date,
@@ -12,6 +12,6 @@ class Data {
   });
 }
 
-List<Data> datalist = [
-  Data(text: "テスト", date: DateTime.now(), username: "Cocon")
+List<Post> posts = [
+  Post(text: "テスト", date: DateTime.now(), username: "Cocon")
 ];

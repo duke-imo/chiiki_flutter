@@ -42,13 +42,13 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView.builder(
-        itemCount: datalist.length,
+        itemCount: posts.length,
         itemBuilder: (BuildContext context, int index) {
           return Card(
             child: ListTile(
-              title: Text(datalist[index].text),
-              subtitle: Text(datalist[index].date.toString()),
-              trailing: Text(datalist[index].username),
+              title: Text(posts[index].text),
+              subtitle: Text(posts[index].date.toString()),
+              trailing: Text(posts[index].username),
             ),
           );
         },
