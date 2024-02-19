@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_chiiki/database.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_chiiki/main.dart';
 
@@ -37,6 +38,10 @@ class _PostPagePageState extends State<PostPage> {
         onPressed: () async {
           final prefs = await SharedPreferences.getInstance();
           prefs.setString('saved_text', _textEditingController.text);
+
+          String savedText = prefs.getString('saved_text') ?? "No Data";
+
+          post(text: savedText, date: DateTime.now().toString(), username: "kato");
 
           Navigator.push(
             context,
