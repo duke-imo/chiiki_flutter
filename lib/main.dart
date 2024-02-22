@@ -27,7 +27,6 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
-
   final String title;
 
   @override
@@ -36,7 +35,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int selectedIndex = 0;
-
+  final List<Post> posts = getPosts();
 
   @override
   Widget build(BuildContext context) {
@@ -47,26 +46,29 @@ class _MyHomePageState extends State<MyHomePage> {
         itemBuilder: (BuildContext context, int index) {
           return Card(
             color: const Color.fromARGB(255, 34, 34, 34),
-              child: ListTile(
-                leading: const CircleAvatar(
-                  backgroundImage: AssetImage('assets/image/icon_image.png'),
-                  backgroundColor: Colors.transparent,
-                  ),
-                title: Text(
-                  posts[index].text,
-                  style: const TextStyle(color: Colors.white),
-                  ),
-                subtitle: Text(
-                  DateFormat('yyyy/HH:mm').format(posts[index].date),
-                  style: const TextStyle(
-                    color: Color.fromARGB(255, 167, 167, 167),
-                    fontSize: 12,),
-                  ),
-                trailing: Text(
-                  posts[index].username,
-                  style: const TextStyle(color: Color.fromARGB(255, 110, 110, 110)),),
+            child: ListTile(
+              leading: const CircleAvatar(
+                backgroundImage: AssetImage('assets/image/icon_image.png'),
+                backgroundColor: Colors.transparent,
               ),
-            );
+              title: Text(
+                posts[index].text,
+                style: const TextStyle(color: Colors.white),
+              ),
+              subtitle: Text(
+                DateFormat('yyyy/HH:mm').format(posts[index].date),
+                style: const TextStyle(
+                  color: Color.fromARGB(255, 167, 167, 167),
+                  fontSize: 12,
+                ),
+              ),
+              trailing: Text(
+                posts[index].username,
+                style:
+                    const TextStyle(color: Color.fromARGB(255, 110, 110, 110)),
+              ),
+            ),
+          );
         },
       ),
       drawer: Drawer(
@@ -75,17 +77,14 @@ class _MyHomePageState extends State<MyHomePage> {
           padding: EdgeInsets.zero,
           children: <Widget>[
             const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 29, 29, 29)
+              decoration: BoxDecoration(color: Color.fromARGB(255, 29, 29, 29)),
+              child: Center(
+                child: Text('Nothing?!',
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      fontSize: 20,
+                    )),
               ),
-              child: Center( 
-              child: Text(
-                'Nothing?!',
-                style: TextStyle(
-                  color: Color.fromARGB(255, 255, 255, 255),
-                  fontSize: 20,)
-                  ),
-            ),
             ),
             ListTile(
               title: const Text(
@@ -95,7 +94,8 @@ class _MyHomePageState extends State<MyHomePage> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) =>  const PostPage()),);
+                  MaterialPageRoute(builder: (context) => const PostPage()),
+                );
               },
             ),
             ListTile(
@@ -119,7 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
             if (index == 1) {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) =>  const PostPage()),
+                MaterialPageRoute(builder: (context) => const PostPage()),
               );
             }
           });
@@ -129,13 +129,14 @@ class _MyHomePageState extends State<MyHomePage> {
             icon: Icon(
               Icons.home,
               color: Colors.white,
-              ),
+            ),
             label: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.add,
-              color: Colors.white,),
+              color: Colors.white,
+            ),
             label: '',
           ),
         ],
@@ -147,8 +148,7 @@ class _MyHomePageState extends State<MyHomePage> {
           fontSize: 40,
         ),
         centerTitle: true,
-        
-      ), 
+      ),
     );
   }
 }
