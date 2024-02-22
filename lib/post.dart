@@ -29,10 +29,10 @@ class _PostPagePageState extends State<PostPage> {
                 TextField(
                   controller: _textEditingController,
                   enabled: true,
-                  maxLength: 50,
+                  maxLength: 150,
                   style: const TextStyle(color: Colors.black),
                   obscureText: false,
-                  maxLines: 1,
+                  maxLines: null,
                   decoration: const InputDecoration(
                     icon: Icon(Icons.speaker_notes),
                     hintText: '投稿内容を記載します',
@@ -42,7 +42,7 @@ class _PostPagePageState extends State<PostPage> {
                 TextField(
                   controller: _usernameEditingController,
                   enabled: true,
-                  maxLength: 50,
+                  maxLength: 15,
                   style: const TextStyle(color: Colors.black),
                   obscureText: false,
                   maxLines: 1,
