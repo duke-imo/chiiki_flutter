@@ -77,9 +77,9 @@ class _PostPagePageState extends State<PostPage> {
                 _pickImageFromCamera();
               },
             ),
-            // _selectedImage != null
-            //     ? Image.file(_selectedImage!)
-            //     : const Text("Please select an image")
+             _selectedImage != null
+                 ? Image.file(_selectedImage!)
+                 : const Text("Please select an image")
           ],
         ),
       ),
@@ -93,8 +93,11 @@ class _PostPagePageState extends State<PostPage> {
 
           String savedText = prefs.getString('saved_text') ?? "No Data";
           String savedUsername = prefs.getString('saved_username') ?? "No Data";
+          File? selectedImage = File(prefs.getString('saved_image') ?? "No Data");
 
-          createPost(savedText, DateTime.now(), savedUsername, _selectedImage);
+          createPost(savedText, DateTime.now(), savedUsername, selectedImage);
+
+          print(selectedImage.toString());
 
           Navigator.push(
             context,

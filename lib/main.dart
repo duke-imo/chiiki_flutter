@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chiiki/post.dart';
 import 'database.dart';
 import 'package:intl/intl.dart';
+import 'dart:io';
 
 void main() {
   runApp(const MyApp());
@@ -47,8 +48,10 @@ class _MyHomePageState extends State<MyHomePage> {
           return Card(
             color: const Color.fromARGB(255, 34, 34, 34),
             child: ListTile(
-              leading: const CircleAvatar(
-                backgroundImage: AssetImage('assets/image/icon_image.png'),
+              leading:  CircleAvatar(
+                 backgroundImage: posts[index].image != null
+                  ? FileImage(posts[index].image!)
+                  : const AssetImage('assets/image/icon_image.png')as ImageProvider<Object>, 
                 backgroundColor: Colors.transparent,
               ),
               title: Text(
@@ -64,8 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               trailing: Text(
                 posts[index].username,
-                style:
-                    const TextStyle(color: Color.fromARGB(255, 110, 110, 110)),
+                style: const TextStyle(color: Color.fromARGB(255, 110, 110, 110)),
               ),
             ),
           );
