@@ -1,14 +1,16 @@
+import 'dart:io';
+
 class Post {
   final String text;
-  //final List<int> imageBytes;
   final DateTime date;
   final String username;
+  final File? image;
 
   Post({
     required this.text,
-    //required this.imageBytes,
     required this.date,
     required this.username,
+    this.image,
   });
 }
 
@@ -17,11 +19,8 @@ List<Post> _posts = [
   Post(text: "テスト", date: DateTime.now(), username: "Cocon")
 ];
 
-void createPost(String text, DateTime date, String username) {
-  //   if (text.isEmpty || date.isEmpty || username.isEmpty) {
-  //   throw ArgumentError("引数が不足しています");
-  // }
-  _posts.add(Post(text: text, date: date, username: username));
+void createPost(String text, DateTime date, String username, [File? image]) {
+  _posts.add(Post(text: text, date: date, username: username, image: image));
 }
 
 List<Post> getPosts() {
