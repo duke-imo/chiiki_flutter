@@ -49,21 +49,25 @@ class _MyHomePageState extends State<MyHomePage> {
             color: const Color.fromARGB(255, 34, 34, 34),
             child: ListTile(
               leading:  CircleAvatar(
-                 backgroundImage: posts[index].image != null
-                  ? FileImage(posts[index].image!)
-                  : const AssetImage('assets/image/icon_image.png')as ImageProvider<Object>, 
+                 backgroundImage: Image.asset('assets/image/icon_image.png').image,
                 backgroundColor: Colors.transparent,
               ),
               title: Text(
                 posts[index].text,
                 style: const TextStyle(color: Colors.white),
               ),
-              subtitle: Text(
-                DateFormat('yyyy/HH:mm').format(posts[index].date),
-                style: const TextStyle(
-                  color: Color.fromARGB(255, 167, 167, 167),
-                  fontSize: 12,
-                ),
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Image.network(posts[index].imageurl),
+                  Text(
+                    DateFormat('yyyy/HH:mm').format(posts[index].date),
+                    style: const TextStyle(
+                      color: Color.fromARGB(255, 167, 167, 167),
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
               ),
               trailing: Text(
                 posts[index].username,

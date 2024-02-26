@@ -14,8 +14,8 @@ class PostPage extends StatefulWidget {
 
 class _PostPagePageState extends State<PostPage> {
   final TextEditingController _textEditingController = TextEditingController();
-  final TextEditingController _usernameEditingController =
-      TextEditingController();
+  final TextEditingController _usernameEditingController = TextEditingController();
+  final TextEditingController _imageController = TextEditingController();
   File? _selectedImage;
 
   @override
@@ -55,9 +55,22 @@ class _PostPagePageState extends State<PostPage> {
                 labelText: 'ユーザ名 * ',
               ),
             ),
+            TextField(
+              controller: _imageController,
+              enabled: true,
+              maxLength: 5000,
+              style: const TextStyle(color: Colors.black),
+              obscureText: false,
+              maxLines: 1,
+              decoration: const InputDecoration(
+                icon: Icon(Icons.speaker_notes),
+                hintText: '画像リンクを入力してください',
+                labelText: 'イメージURL',
+              ),
+            ),
             MaterialButton(
               color: Colors.blue,
-              child: const Text("Pick Image from Gallery",
+              child: const Text("ライブラリから選ぶ",
                   style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -68,7 +81,7 @@ class _PostPagePageState extends State<PostPage> {
             ),
             MaterialButton(
               color: Colors.red,
-              child: const Text("Pick Image from Camera",
+              child: const Text("写真を撮る（スタックする）",
                   style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -89,13 +102,15 @@ class _PostPagePageState extends State<PostPage> {
 
           prefs.setString('saved_text', _textEditingController.text);
           prefs.setString('saved_username', _usernameEditingController.text);
-          prefs.setString('saved_image', _selectedImage.toString());
+          prefs.setString('saved_image', _selectedImage.toString()); //これは無理
+          prefs.setString('saved_imageURL', _imageController.text);
 
           String savedText = prefs.getString('saved_text') ?? "No Data";
           String savedUsername = prefs.getString('saved_username') ?? "No Data";
           File? selectedImage = File(prefs.getString('saved_image') ?? "No Data");
+          String savedImageURL = prefs.getString('saved_imageURL') ?? "No Data";
 
-          createPost(savedText, DateTime.now(), savedUsername, selectedImage);
+          createPost(savedText, DateTime.now(), savedUsername, selectedImage, savedImageURL);
 
           print(selectedImage.toString());
 
